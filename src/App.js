@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from './components/header';
+import ProvinceList from './components/provincias';
+import ProvinceDetails from './components/detalles';
+import Footer from './components/footer';
 
+/*
+  App.js - componente principal
+  Estado principal:
+    - selected: provincia seleccionada (objeto) o null
+*/
 function App() {
+  const [selected, setSelected] = React.useState(null);
+
+  // toggle modo oscuro (añade/quita clase en body)
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="wrap">
+      <Header onToggleDark={toggleDarkMode} />
+
+      <ProvinceList onSelect={(prov) => setSelected(prov)} />
+
+      {/* Panel de detalles: se muestra cuando selected != null */}
+      <div className="deliverable">
+        <ProvinceDetails prov={selected} onClose={() => setSelected(null)} />
+      </div>
+
+      <Footer />
+    </main>
   );
 }
 

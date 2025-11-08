@@ -1,0 +1,294 @@
+/* ==========================================================
+   Estilos base - TurismoRD: Descubre tu provincia
+   Versión con Modo Oscuro (automático + clase .dark-mode)
+   ========================================================== */
+
+/* Tipografía */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap'); */
+
+:root {
+  --bg-start: #fffaf0;
+  --bg-end: #f0f9ff;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent1: #0057b7;
+  --accent2: #d62828;
+  --shadow: 0 6px 18px rgba(15,23,42,0.08);
+  --radius: 14px;
+  --max-w: 980px;
+  --gap: 18px;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* ====================== */
+/* MODO OSCURO VARIABLES */
+/* ====================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-start: #0f172a;
+    --bg-end: #1e293b;
+    --card: #1e293b;
+    --muted: #94a3b8;
+    --accent1: #3b82f6;
+    --accent2: #ef4444;
+    --shadow: 0 6px 18px rgba(0,0,0,0.6);
+  }
+}
+
+/* También se puede forzar con la clase .dark-mode */
+.dark-mode {
+  --bg-start: #0f172a;
+  --bg-end: #1e293b;
+  --card: #1e293b;
+  --muted: #94a3b8;
+  --accent1: #3b82f6;
+  --accent2: #ef4444;
+  --shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* ====================== */
+/* ESTILOS GENERALES */
+/* ====================== */
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--bg-start), var(--bg-end));
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  padding: 40px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+main, .wrap {
+  width: 100%;
+  max-width: var(--max-w);
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9));
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  backdrop-filter: blur(6px);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ---------------------- */
+/* TITULOS Y TEXTOS */
+/* ---------------------- */
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0 0 10px 0;
+  line-height: 1.15;
+  letter-spacing: -0.2px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+h1::before {
+  content: "";
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  box-shadow: 0 6px 20px rgba(0,87,183,0.12);
+  display: inline-block;
+}
+
+h2 {
+  font-size: 1.05rem;
+  margin: 20px 0 10px 0;
+  color: #071428;
+  font-weight: 600;
+  border-left: 4px solid var(--accent1);
+  padding-left: 12px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+p {
+  margin: 0 0 12px 0;
+  color: #0b1220;
+  font-size: 0.98rem;
+  transition: color 0.3s ease;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+}
+
+ul li {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 6px 14px rgba(10,20,30,0.04);
+  transition: transform .18s ease, box-shadow .18s ease, background 0.4s ease;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+ul li:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(10,20,30,0.09);
+}
+
+strong {
+  color: #08102a;
+  display: inline-block;
+  min-width: 110px;
+  font-weight: 700;
+}
+
+ul + ul,
+.details {
+  margin-top: 10px;
+  grid-template-columns: 1fr;
+}
+
+.details li {
+  padding-left: 44px;
+  position: relative;
+}
+
+.details li::before {
+  content: "📍";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  font-size: 18px;
+}
+
+h2 + p,
+.deliverable {
+  border-left: 4px solid var(--accent2);
+  padding-left: 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,250,245,0.6));
+  border-radius: 8px;
+  padding: 14px;
+  margin-top: 12px;
+}
+
+/* ---------------------- */
+/* FOOTER */
+/* ---------------------- */
+
+footer {
+  margin-top: 22px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ---------------------- */
+/* RESPONSIVE */
+/* ---------------------- */
+
+@media (max-width: 900px) {
+  ul {
+    grid-template-columns: 1fr;
+  }
+  h1 { font-size: 1.4rem; }
+  body { padding: 28px 14px; }
+  .wrap { padding: 20px; }
+}
+
+@media (max-width: 420px) {
+  h1 { font-size: 1.15rem; }
+  h2 { font-size: 1rem; }
+  p { font-size: 0.95rem; }
+  ul li { padding: 12px; }
+}
+
+/* ---------------------- */
+/* IMPRESIÓN */
+/* ---------------------- */
+@media print {
+  body { background: #fff; color: #000; }
+  .wrap { box-shadow: none; background: transparent; }
+  h1::before { display: none; }
+  ul li { box-shadow: none; transform: none; }
+}
+
+/* ====================== */
+/* MODO OSCURO EFECTIVO */
+/* ====================== */
+
+/* 🌙 1. Cuando el usuario activa modo oscuro manualmente con .dark-mode */
+body.dark-mode {
+  color: #e2e8f0;
+}
+
+body.dark-mode main,
+body.dark-mode .wrap {
+  background: linear-gradient(180deg, rgba(30,41,59,0.85), rgba(15,23,42,0.9));
+}
+
+body.dark-mode h2 {
+  color: #e2e8f0;
+  border-color: var(--accent1);
+}
+
+body.dark-mode p,
+body.dark-mode strong {
+  color: #cbd5e1;
+}
+
+body.dark-mode ul li {
+  background: #1e293b;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+body.dark-mode ul li:hover {
+  background: #334155;
+}
+
+body.dark-mode .deliverable {
+  background: linear-gradient(90deg, rgba(30,41,59,0.6), rgba(15,23,42,0.6));
+}
+
+/* 💻 2. Cuando el sistema del usuario está en modo oscuro (automático) */
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #e2e8f0;
+  }
+
+  main, .wrap {
+    background: linear-gradient(180deg, rgba(30,41,59,0.85), rgba(15,23,42,0.9));
+  }
+
+  h2 {
+    color: #e2e8f0;
+    border-color: var(--accent1);
+  }
+
+  p, strong {
+    color: #cbd5e1;
+  }
+
+  ul li {
+    background: #1e293b;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+  }
+
+  ul li:hover {
+    background: #334155;
+  }
+
+  .deliverable {
+    background: linear-gradient(90deg, rgba(30,41,59,0.6), rgba(15,23,42,0.6));
+  }
+}
+
